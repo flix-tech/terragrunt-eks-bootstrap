@@ -16,6 +16,7 @@ provider "aws" {
 }
 
 provider "kubernetes" { 
+  version = "1.13.3"
   load_config_file       = "false"
   host                   = var.eks_cluster_endpoint
   token                  = data.aws_eks_cluster_auth.cluster.token
@@ -31,6 +32,8 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "helm" {
+  version = "1.3.2"
+  debug = true
   kubernetes { 
     load_config_file       = "false"
     host                   = var.eks_cluster_endpoint

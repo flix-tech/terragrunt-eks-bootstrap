@@ -95,7 +95,9 @@ resource "aws_security_group" "all_worker_mgmt" {
 
 module "eks" {
   source       = "terraform-aws-modules/eks/aws"
+  version      = "12.2.0"
   cluster_name = var.cluster_name
+  cluster_version = "1.17"
   subnets      = module.vpc.private_subnets
   vpc_id       = module.vpc.vpc_id
   enable_irsa  = true

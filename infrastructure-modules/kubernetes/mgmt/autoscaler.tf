@@ -14,10 +14,10 @@ data "template_file" "helmvalue" {
 
 resource "helm_release" "cluster-autoscaler" {
   name  = "cluster-autoscaler"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   chart = "cluster-autoscaler"
+  version    = "8.0.0"
   namespace = "kube-system"
-
   values = [
     data.template_file.helmvalue.rendered,
   ]
@@ -26,7 +26,8 @@ resource "helm_release" "cluster-autoscaler" {
 #helm install spot-handler stable/k8s-spot-termination-handler --namespace kube-system
 resource "helm_release" "spot-handler" {
   name  = "spot-handler"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://charts.helm.sh/stable"
   chart = "k8s-spot-termination-handler"
+  version    = "1.4.9"
   namespace = "kube-system"
 }
